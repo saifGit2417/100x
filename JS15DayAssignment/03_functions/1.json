@@ -1,0 +1,102 @@
+[
+  { "name": "StudentID", "templateId": 1, "active": true, "productId": 2 },
+  { "name": "StaffID", "templateId": 2, "active": true, "productId": 2 },
+  {
+    "name": "TransferCertificate",
+    "templateId": 4,
+    "active": true,
+    "productId": 2
+  },
+  { "name": "OtherStaffID", "templateId": 5, "active": true, "productId": 2 },
+  {
+    "name": "BonafideCertificate",
+    "templateId": 3,
+    "active": true,
+    "productId": 2
+  },
+  { "name": "Users Report", "templateId": 6, "active": true, "productId": 1 },
+  {
+    "name": "Gradewise Attendance Report",
+    "templateId": 7,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Platform Usage Report - Teacher",
+    "templateId": 8,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Milestone Report",
+    "templateId": 10,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Platform Usage Report - Student",
+    "templateId": 11,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Content Usage Report - Teacher",
+    "templateId": 9,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Content Usage Report - Student",
+    "templateId": 12,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Student Registration Report",
+    "templateId": 13,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Overall Result Report",
+    "templateId": 14,
+    "active": true,
+    "productId": 1
+  },
+  {
+    "name": "Fee Reminder Report",
+    "templateId": 15,
+    "active": true,
+    "productId": 3
+  },
+  {
+    "name": "Fee Structure Report",
+    "templateId": 16,
+    "active": true,
+    "productId": 3
+  },
+  {
+    "name": "Fee Receipt Report ",
+    "templateId": 17,
+    "active": true,
+    "productId": 3
+  },
+  {
+    "name": "Template Generation Report",
+    "templateId": 18,
+    "active": true,
+    "productId": 3
+  },
+  {
+    "name": "Admission DropOff Report",
+    "templateId": 19,
+    "active": true,
+    "productId": 3
+  },
+  {
+    "name": "Admission Report",
+    "templateId": 20,
+    "active": true,
+    "productId": 3
+  }
+]
