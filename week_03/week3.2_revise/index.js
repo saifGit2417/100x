@@ -61,8 +61,14 @@ app.get("/users", function (req, res) {
   try {
     const decoded = jwt.verify(token, jwtPassword);
     const username = decoded.username;
+    console.log(username);
     // return a list of users other than this username
-    res.send(ALL_USERS.map((data) => data.name));
+    // we are only returning names
+    res.json({
+      users: ALL_USERS.filter((data) => data.username !== username).map(
+        (data) => data.name
+      ),
+    });
   } catch (err) {
     return res.status(403).json({
       msg: "Invalid token",
