@@ -1,0 +1,25 @@
+dont go for bounties focus on foundations
+dont got for GSOC
+try to low , medium 
+i come under mid category
+
+pick your category
+i am mid in FE
+i am beginner in BE 
+if you are doing assignment , then you are making most of the cohort
+
+
+
+///--------------- week 1.2 starts below
+
+what is interpreted and compiled languages.
+what is compiler
+js is interpreted language
+what is static and dynamic language
+static - define data type before hand , cant pu anything else
+dynamic - data type can be change on the go , string > number > boolean > string > number  -- any type  - TS can change this
+what is single threaded nature of JS?
+what is cluster model in js , to use all cores 
+what are called subroutines
+what is single threaded non blocking io means google it
+

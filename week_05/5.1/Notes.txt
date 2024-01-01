@@ -1,6 +1,0 @@
-what is static and dynamic website
-major differnce between them interview wise
-
-make counter usijng html and js
-
-components , state and re rendering  >  soul of react
