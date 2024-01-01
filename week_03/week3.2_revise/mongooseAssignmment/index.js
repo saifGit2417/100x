@@ -1,19 +1,17 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const portNumber = 3000;
+require("dotenv").config();
 
-//  middle wares
+const portNumber = process.env.PORT_NUMBER || 3000;
+const DATABASE_URL =
+  process.env.DB_CONNECTION_STRING || "mongodb://localhost:27017/your-database";
 app.use(express.json());
 
 // connect with db using mongoose
-mongoose
-  .connect(
-    "mongodb+srv://saif1:PqKXa0gXCJevEoqf@cluster0.yjfo0fs.mongodb.net/100x_Db"
-  )
-  .then(() => {
-    console.log("mongoose connected successfully");
-  });
+mongoose.connect(DATABASE_URL).then(() => {
+  console.log("mongoose connected successfully");
+});
 
 //  creating  schema explicitly for better code readability
 const UserSchema = new mongoose.Schema({
@@ -27,7 +25,6 @@ const Users = mongoose.model("usersTable", UserSchema);
 
 // creating end point to signup user
 app.post("/signup", async (req, res) => {
-  
   // destructure req body instead of using req.body method for each thing
   const { userName, password, email } = req.body;
 
