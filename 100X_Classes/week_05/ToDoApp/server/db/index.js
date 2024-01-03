@@ -2,7 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const dbPath = process.env.DBURL;
 
-const dbUrl = "mongodb://localhost:27017/todoApplication";
+const dbUrl = dbPath || "mongodb://localhost:27017/todoApplication";
 
 mongoose.connect(dbUrl).then(() => {
   console.log("db connected successfully");
