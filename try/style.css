@@ -1,0 +1,23 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#parent{
+    height: 100vh;
+    width: 100%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.subparent{
+    display: flex;
+    justify-content: space-around;
+}
+
+.child1{
+    height: 100px;
+    width: 100px;
+    background-color: #fdc57b;
+}
