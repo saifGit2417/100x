@@ -1,38 +1,32 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
+import axios from "axios";
 const App = () => {
+  const [todo, setToDo] = useState([]);
+  useEffect(() => {
+    setInterval(() => {
+    axios
+      .get("https://sum-server.100xdevs.com/todos")
+      .then((res) => setToDo(res.data.todos))
+      .catch((err) => console.log(err));
+    }, 3000);
+  }, []);
   return (
     <div>
-      <CardWrapper>Hi there</CardWrapper>
-      <CardWrapper>Good Morning</CardWrapper>
-
-      {/* ddeeply nested warppers */}
-      <CardWrapper>
-        <CardWrapper>
-          <CardWrapper>
-            <p>deeply nested wrapper</p>
-          </CardWrapper>
-        </CardWrapper>
-      </CardWrapper>
+      {todo.map((data) => {
+        return (
+          <div
+            style={{ padding: "10px", margin: "20px", border: "2px solid red" }}
+            key={data.id}
+          >
+            <p>{data.id}</p>
+            <p>{data.title}</p>
+            <p>{data.description}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };
-
-function CardWrapper({ children }) {
-  return (
-    <div
-      style={{
-        border: "2px solid red",
-        padding: "20px",
-        margin: "50px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        fontSize: "40px",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
 
 export default App;
