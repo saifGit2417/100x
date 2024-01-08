@@ -1,37 +1,45 @@
 const { z } = require("zod");
 const { User } = require("../db");
 
-const userSchemaValidation = z.object({
+const signUpSchemaValidation = z.object({
   username: z.string().min(5),
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-async function authenticateBody(req, res, next) {
-  const { username, email, password } = req.body;
+const logInSchemaValidation = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
 
+// make common function so that we can pass schema as per our choice
+const validateSchema = (schema, req, res, next) => {
   try {
-    let validateSchema = userSchemaValidation.safeParse({
-      username,
-      email,
-      password,
-    });
-    if (validateSchema.success) {
+    const validation = schema.safeParse(req.body);
+    if (validation.success) {
       next();
     } else {
       res.status(400).json({
         message: "Input validation failed",
         severity: "warning",
-        error: validateSchema,
+        error: validation,
       });
     }
   } catch (error) {
     console.log("validateSchema error: ", error);
   }
+};
+
+async function authenticateSignUpBody(req, res, next) {
+  validateSchema(signUpSchemaValidation, req, res, next);
+}
+
+async function authenticateLoginBody(req, res, next) {
+  validateSchema(logInSchemaValidation, req, res, next);
 }
 
 async function existingEmail(req, res, next) {
-  const {  email } = req.body;
+  const { email } = req.body;
 
   try {
     const checkIfExists = await User.findOne({ email });
@@ -48,4 +56,8 @@ async function existingEmail(req, res, next) {
   }
 }
 
-module.exports = { authenticateBody, existingEmail };
+module.exports = {
+  existingEmail,
+  authenticateSignUpBody,
+  authenticateLoginBody,
+};

@@ -1,5 +1,7 @@
 const { z } = require("zod");
-const { ToDo } = require("../db/index");
+const { ToDo, User } = require("../db/index");
+const jwt = require("jsonwebtoken");
+const jwtSecret_key = require("../constants");
 
 const todoSchema = z.object({
   todo: z.string().min(1),
@@ -50,4 +52,29 @@ async function checkTaskId(req, res, next) {
   }
 }
 
-module.exports = { checkReqBody, checkExistingToDo, checkTaskId };
+async function verifyJwtFromHeaders(req, res, next) {
+  const { authorization } = req.headers;
+  let jwtToken = authorization.split(" ")[1];
+
+  try {
+    const verifyJwtBySecret = jwt.verify(jwtToken, jwtSecret_key);
+    const emailFromJwt = verifyJwtBySecret.email;
+    const verifyUserExist = await User.findOne({ email: emailFromJwt });
+    if (verifyUserExist) {
+      next();
+    } else {
+      res.json({
+        message: "jwt verification failed",
+      });
+    }
+  } catch (error) {
+    console.log("error: ", error);
+  }
+}
+
+module.exports = {
+  checkReqBody,
+  checkExistingToDo,
+  checkTaskId,
+  verifyJwtFromHeaders,
+};

@@ -4,9 +4,12 @@ const {
   checkReqBody,
   checkExistingToDo,
   checkTaskId,
+  verifyJwtFromHeaders,
 } = require("../middleware/todo_middleware");
 
 const router = express.Router();
+// middle ware to verify jwt from headers
+router.use(verifyJwtFromHeaders);
 
 router.get("/getAll", async (req, res) => {
   try {
