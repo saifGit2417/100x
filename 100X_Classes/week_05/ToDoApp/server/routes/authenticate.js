@@ -4,38 +4,43 @@ const { v4: uuid } = require("uuid");
 const jwt = require("jsonwebtoken");
 const { User } = require("../db/index");
 const {
-  authenticateBody,
   existingEmail,
+  authenticateSignUpBody,
+  authenticateLoginBody,
 } = require("../middleware/authenticate_middleware");
 const jwtSecretKey = require("../constants.js");
 
-router.use(authenticateBody);
+router.post(
+  "/signUp",
+  authenticateSignUpBody,
+  existingEmail,
+  async (req, res) => {
+    const { username, email, password } = req.body;
 
-router.post("/signUp", existingEmail, async (req, res) => {
-  const { username, email, password } = req.body;
-
-  try {
-    const createNewUser = await User({
-      userId: uuid(),
-      username,
-      email,
-      password,
-    });
-    createNewUser.save().then((data) => {
-      res.json({
-        message: "New User Created Successfully",
+    try {
+      const createNewUser = await User({
+        userId: uuid(),
+        username,
+        email,
+        password,
       });
-    });
-  } catch (error) {
-    console.log("signUp error: ", error);
+      createNewUser.save().then((data) => {
+        res.json({
+          message: "New User Created Successfully",
+          severity: "success",
+        });
+      });
+    } catch (error) {
+      console.log("signUp error: ", error);
+    }
   }
-});
+);
 
-router.post("/login", async (req, res) => {
-  const { username, email, password } = req.body;
+router.post("/login", authenticateLoginBody, async (req, res) => {
+  const { email, password } = req.body;
 
   try {
-    const verifyUser = await User.findOne({ username, email, password });
+    const verifyUser = await User.findOne({ email, password });
     if (verifyUser) {
       const createJwtToken = jwt.sign({ email }, jwtSecretKey);
       res.json({
@@ -44,8 +49,9 @@ router.post("/login", async (req, res) => {
         auth_token: createJwtToken,
       });
     } else {
-      res.json({
-        message: "something went wrong",
+      res.status(400).json({
+        message: "no user found",
+        severity: "warning",
       });
     }
   } catch (error) {

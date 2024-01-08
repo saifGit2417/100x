@@ -22,6 +22,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { ToDoStyle } from "./ToDolistStyle";
+import { getLocalStorageValue } from "../constant";
 
 export interface ToDoData {
   _id: string;
@@ -51,9 +52,16 @@ const ToDoList = () => {
     setInputChange(fieldValue);
   };
 
+  const jwtToken = getLocalStorageValue("auth_token");
+  console.log("jwtToken from to do component: ", jwtToken);
+
   const getAllTasks = () => {
     axios
-      .get("http://localhost:8000/todo/getAll")
+      .get("http://localhost:8000/todo/getAll", {
+        headers: {
+          authorization: `bearer ${jwtToken}`,
+        },
+      })
       .then((res) => {
         setTaskList(res.data.tasks);
       })
@@ -62,7 +70,15 @@ const ToDoList = () => {
 
   const handlePostTask = () => {
     axios
-      .post("http://localhost:8000/todo/add", { todo: inputChange })
+      .post(
+        "http://localhost:8000/todo/add",
+        { todo: inputChange },
+        {
+          headers: {
+            authorization: `bearer ${jwtToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           setSnackBar({
@@ -78,9 +94,18 @@ const ToDoList = () => {
         console.warn(error);
       });
   };
+
   const handlePostEditTask = () => {
     axios
-      .put(`http://localhost:8000/todo/edit/${taskId}`, { todo: inputChange })
+      .put(
+        `http://localhost:8000/todo/edit/${taskId}`,
+        { todo: inputChange },
+        {
+          headers: {
+            authorization:`bearer ${jwtToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           setSnackBar({
@@ -100,7 +125,11 @@ const ToDoList = () => {
 
   const handleTaskDelete = (id: string) => {
     axios
-      .delete(`http://localhost:8000/todo/delete/${id}`)
+      .delete(`http://localhost:8000/todo/delete/${id}`, {
+        headers: {
+          authorization: `bearer ${jwtToken}`,
+        },
+      })
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           setReload(!reload);
@@ -118,9 +147,17 @@ const ToDoList = () => {
 
   const handleMarkComplete = (id: string) => {
     axios
-      .put(`http://localhost:8000/todo//update/${id}`, {
-        completed: true,
-      })
+      .put(
+        `http://localhost:8000/todo//update/${id}`,
+        {
+          completed: true,
+        },
+        {
+          headers: {
+            authorization: `bearer ${jwtToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200 || res.status === 201) {
           setReload(!reload);
