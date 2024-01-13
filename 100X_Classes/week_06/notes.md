@@ -10,29 +10,31 @@ importsnce of key in resct rendering whilker mapping data
 wrapper components and using children props to redner whole differnt compoennt input without props
 
 const App = () => {
-  return (
-    <div>
-      <CardWrapper>Hi there</CardWrapper>
-      <CardWrapper>Good Morning</CardWrapper>
-    </div>
-  );
+return (
+<div>
+<CardWrapper>Hi there</CardWrapper>
+<CardWrapper>Good Morning</CardWrapper>
+</div>
+);
 };
 
 function CardWrapper({ children }) {
-  return (
-    <div
-      style={{
+return (
+<div
+style={{
         border: "2px solid red",
         padding: "20px",
         margin: "50px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-      }}
-    >
-      {children}
-    </div>
-  );
+      }} >
+{children}
+</div>
+);
 }
 
 export default App;
+
+side effects
+hooks
