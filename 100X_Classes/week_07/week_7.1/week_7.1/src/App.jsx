@@ -1,34 +1,23 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import {
-  BrowserRouter,
-  Link,
-  NavLink,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import Dashboard from "./components/Dashboard";
+import React, { Suspense, lazy } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+
+// if putting curly braces use return keyword
+const DashboardLazy = lazy(() => {
+  return import("./components/Dashboard");
+});
+
+const LandingPageLazy = lazy(() => import("./components/LandingPage"));
 
 const App = () => {
-  // try routing like this
-  const routeComponents = [
-    { path: "/", element: <LandingPage /> },
-    { path: "/dashboard", element: <Dashboard /> },
-  ];
   return (
     <div>
-      <div style={{ background: "yellow", color: "red" }}>
-        <h6>this is constant will remsain here even page changes</h6>
-      </div>
-      <BrowserRouter>
-        <TopRouteBar />
+      <Suspense fallback={<p>....loading</p>}>
         <Routes>
-          <Route path="/" element={<LandingPage />} />;
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<LandingPageLazy />} />
+          <Route path="/dashboard" element={<DashboardLazy />} />
         </Routes>
-      </BrowserRouter>
+      </Suspense>
     </div>
   );
 };
