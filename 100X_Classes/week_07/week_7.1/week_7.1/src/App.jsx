@@ -1,36 +1,44 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Suspense, lazy } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-
-// if putting curly braces use return keyword
-const DashboardLazy = lazy(() => {
-  return import("./components/Dashboard");
-});
-
-const LandingPageLazy = lazy(() => import("./components/LandingPage"));
+import { useState } from "react";
 
 const App = () => {
+  const [count, setCount] = useState(0);
   return (
     <div>
-      <Suspense fallback={<p>....loading</p>}>
-        <Routes>
-          <Route path="/" element={<LandingPageLazy />} />
-          <Route path="/dashboard" element={<DashboardLazy />} />
-        </Routes>
-      </Suspense>
+      <Count count={count} setCount={setCount} />
     </div>
   );
 };
 
-export default App;
-
-function TopRouteBar() {
-  const navigate = useNavigate();
-
+function Count({ count, setCount }) {
   return (
     <div>
-      <button onClick={() => navigate("/dashboard")}> Dashboard</button>
-      <button onClick={() => navigate("/")}>LANDING PAGE </button>
+      {count}
+      <Buttons count={count} setCount={setCount} />
     </div>
   );
 }
+
+function Buttons({ count, setCount }) {
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        increase
+      </button>
+      <br />
+      <button
+        onClick={() => {
+          setCount(count - 1);
+        }}
+      >
+        decrease
+      </button>
+    </div>
+  );
+}
+export default App;
