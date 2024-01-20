@@ -1,26 +1,35 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CountContext } from "./CreateContext";
 
-const App = () => {
+function App() {
   const [count, setCount] = useState(0);
-  return (
-    <div>
-      <Count count={count} setCount={setCount} />
-    </div>
-  );
-};
 
-function Count({ count, setCount }) {
   return (
     <div>
-      {count}
-      <Buttons count={count} setCount={setCount} />
+      <CountContext.Provider value={count}>
+        <Count setCount={setCount} />
+      </CountContext.Provider>
     </div>
   );
 }
 
-function Buttons({ count, setCount }) {
+function Count({ setCount }) {
+  return (
+    <div>
+      <CountRenderer />
+      <Buttons setCount={setCount} />
+    </div>
+  );
+}
+
+function CountRenderer() {
+  const count = useContext(CountContext);
+  return <div>{count}</div>;
+}
+
+function Buttons({ setCount }) {
+  const count = useContext(CountContext);
   return (
     <div>
       <button
@@ -28,17 +37,18 @@ function Buttons({ count, setCount }) {
           setCount(count + 1);
         }}
       >
-        increase
+        Increase
       </button>
-      <br />
+
       <button
         onClick={() => {
           setCount(count - 1);
         }}
       >
-        decrease
+        Decrease
       </button>
     </div>
   );
 }
+
 export default App;
