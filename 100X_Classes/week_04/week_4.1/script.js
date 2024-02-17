@@ -94,3 +94,7 @@ const handleChangeColor = () => {
   colorResult.innerHTML = randomColor;
   return (document.body.style.backgroundColor = randomColor);
 };
+
+// setInterval(() => {
+//   handleChangeColor();
+// }, 1000);
