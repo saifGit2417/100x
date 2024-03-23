@@ -1,14 +1,20 @@
 import React from "react";
-import UseTodos from "./customHook/UseTodos";
+import useTodo from "./customHook/UseTodos";
 
 function App() {
-  const todos = UseTodos();
+  const { todo, loading } = useTodo(2000, 5);
 
   return (
     <>
-      {todos.map((todo) => (
-        <Track todo={todo} />
-      ))}
+      {loading ? (
+        <div>........loading</div>
+      ) : (
+        <>
+          {todo.map((todo) => (
+            <Track todo={todo} />
+          ))}
+        </>
+      )}
     </>
   );
 }
