@@ -20,8 +20,6 @@ const useTodo = (timer: number, howManyTimes: number) => {
     const intervalFunction = setInterval(() => {
       if (apiCalled < howManyTimes) {
         callApi();
-      } else {
-        console.log("limits exceeded");
       }
     }, timer);
     return () => clearInterval(intervalFunction);
