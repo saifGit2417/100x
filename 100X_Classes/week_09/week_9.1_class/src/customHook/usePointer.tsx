@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 const usePointer = () => {
   const [mousePosition, setMousePosition] = useState<any>({ x: "", y: "" });
-  console.log("mousePosition: ", mousePosition);
 
   const handleMouseMove = (event) => {
     let xPosition = event.clientX;
