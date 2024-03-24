@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-const useDebounce = (input) => {
+const useDebounce = (input:string,timeRange:number) => {
   const [inputVal, setInputVal] = useState("");
 
   useEffect(() => {
     let timer = setTimeout(() => {
       setInputVal(input);
-    }, 2000);
+    }, timeRange);
     return () => clearTimeout(timer);
   }, [input]);
 

@@ -16,7 +16,7 @@ function App() {
 
   const [input, setInput] = useState("");
 
-  const debounceResult = useDebounce(input);
+  const debounceResult = useDebounce(input, 3000);
   return (
     <>
       {/* useDebounce custom hook */}
