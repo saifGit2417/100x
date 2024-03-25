@@ -3,7 +3,7 @@ import { client, deleteAllData, insertData } from "./tables/user.js";
 const app = express();
 
 app.use(express.json());
-
+// class 10.1 completed
 app.get("/", (req, res) => {
   res.send("hi from node app");
 });
