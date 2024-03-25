@@ -1,12 +1,12 @@
 import pkg from "pg";
 const { Client } = pkg;
 
-const client = new Client({
+export const client = new Client({
   connectionString:
     "postgresql://saif.navneettoptech:l3bqYNC6IVPi@ep-throbbing-hall-a5ujuley.us-east-2.aws.neon.tech/100x_class?sslmode=require",
 });
 
-async function createUserTable() {
+export async function createUserTable() {
   try {
     await client.connect();
     const result = await client.query(
@@ -28,16 +28,20 @@ async function createUserTable() {
 
 // createUserTable();
 
-async function insertData() {
+export async function insertData(name, address, phoneNumber, age) {
   try {
     await client.connect();
     // using sql injection method to insert data into table , for safety reason , do ready about sql injection
     const insertData = `INSERT INTO users (name , address,phoneNumber,age) VALUES($1,$2,$3,$4)`;
     const values = [
-      "35 year old guy",
-      "35 year old guy's address",
-      9876543210,
-      35,
+      // "35 year old guy",
+      // "35 year old guy's address",
+      // 9876543210,
+      // 35,
+      name,
+      address,
+      phoneNumber,
+      age,
     ];
     // for (let i = 0; i < 5; i++) {
     await client.query(insertData, values);
@@ -52,7 +56,7 @@ async function insertData() {
 
 // insertData();
 
-async function deleteAllData() {
+export async function deleteAllData() {
   try {
     client.connect();
     const deleteQuery = `DELETE FROM users`;
@@ -67,7 +71,7 @@ async function deleteAllData() {
 
 // deleteAllData();
 
-async function findData() {
+export async function findData() {
   try {
     client.connect();
     let findData = `SELECT * FROM users WHERE age > $1`;
