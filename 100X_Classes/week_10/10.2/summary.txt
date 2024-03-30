@@ -1,0 +1,11 @@
+intro to prisma 
+how to make connection cloud db using neon.tech
+how to make db connection  using prisma and required provider
+how to make models
+
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+
+use this prisma object to use all the ORM's > create , delete , update ,read
+ 
