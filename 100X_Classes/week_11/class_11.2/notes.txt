@@ -1,0 +1,9 @@
+below command to start ec2 instance on you local without putty
+
+ssh -i 100x_key_aws.pem ubuntu@54.152.178.164
+ssh -i file name of .temp file ubuntu@ip of you ec2 instance
+ip changes of instances when you restrat it so always double check the ip of instance
+
+if above method givess soem error
+try below command first 
+chmod 700 100x_key_aws.pem(file name of .tremp file)
