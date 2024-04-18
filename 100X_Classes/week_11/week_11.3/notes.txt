@@ -1,0 +1,5 @@
+ec2 instances of aws
+how to create new ece instances for node js
+how to run node js application on ec2 instances
+nginix and resverse proxy
+what is ssl and secure website
