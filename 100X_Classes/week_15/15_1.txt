@@ -1,0 +1,62 @@
+1-what is docker containers
+Docker containers are lightweight and portable, allowing developers to package their applications and dependencies into a single container.
+They provide a consistent and reliable way to deploy applications across different environments, such as development, testing,
+
+2- what are docker images
+Docker images are the basis of containers. An image is essentially a template that includes the operating system
+
+3- docker images vs docker container
+Docker images are the templates, and Docker containers are the instances of those templates. You can think
+
+4- docker ps > to see how many containers are running
+
+
+5- difference between virtual machine and docker container
+
+port mapping
+
+docker run -p 27017:27017 mongo
+-p 27017:27017 means that we are mapping port 27017 on the host machine
+
+docker run -d -p 27017:27018 mongo
+my machines 27017 will target dockers 27018 port
+-d means that the container will run in detached mode
+
+
+#######################------------------------#################################
+
+COMMON DOCKER COMMANDS
+
+docker images >>> it will show all images your machine have
+
+docker pull [image name] >>> it will required docker image from docker hub
+
+docker ps >>> it will show all running docker images
+
+docker run mongo <image name> >>>>>> it will start container for you
+
+docker run -d mongo >> it will start running mongo in detached mode {background}
+
+docker kill [container id] >>> it will kill that particular container in your docker
+
+docker ps -a >>>>>>>> command in Docker is used to list all containers on the Docker host, including those that are running, stopped, or in any other state.
+
+
+TO REMOVE DOCKER image
+
+run docker images >>> it will give you the list of all images running
+
+then copy the name of image that you want to remove and run below command
+
+docker rmi mongo
+
+
+#####################-------------------#####################
+
+CREATE YOUR OWN DOCKER IMAGES/FILES
+
+HOW TO PASS .ENV VARIABLES WHILE RUNNING DOCKER IMAGES
+
+-e > stands for injecting env VARIABLES
+
+docker run -d -p 3000:3000 -e DATABASE_URL="your date base url" [name of image whihc you wan tto run]
