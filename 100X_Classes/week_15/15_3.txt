@@ -1,0 +1,29 @@
+try running below commands in docker and gets your hands dirty
+
+docker kill - kill container
+
+docker ps - see how many containers running
+
+docker rmi - remove certain image from docker to free space
+
+docker exec <container id> -- i can go inside docker image
+
+docker exec -it <container_id> /bin/bash
+-- will run docker image interactively
+> by running this command you can interact with this container
+
+
+<docker push images>
+-prepare theory why docker images are preferred over github code source
+-how to create docker hub and push our images
+
+
+before running any image pull it first
+
+
+docker compose -- 
+
+cache and layering is important in cresting docker images
+
+
+what is docker compose file and how it works > how to create docker yaml file 

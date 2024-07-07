@@ -1,0 +1,6 @@
+1 - what is layer in docker
+2- what is caching in docker
+
+
+
+week 15 is all about docker so practically cant write code here practicing docker commands in docker only , check docker file and notes
