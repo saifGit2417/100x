@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <div className={styles.page}>
+      <div> i am from web page</div>
       <main className={styles.main}>
         <Image
           className={styles.logo}
