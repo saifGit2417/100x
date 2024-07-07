@@ -4,3 +4,5 @@ mono repo VS turbo repo
 what is build system orcahstrator in mono repo
 eg - common module - front end - backend
 how to make sure if i change something in common >then npm run build should run in all three to mimick my changes
+
+npx create-turbo@latest >>> this will let you create new turbo repo
