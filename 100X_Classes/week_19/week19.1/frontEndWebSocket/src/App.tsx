@@ -21,6 +21,9 @@ function App() {
     return () => newSocket.close();
   }, []);
 
+  
+
+
   // same logic will be there in next js as well only make sure to make this as client component
   return (
     <>
